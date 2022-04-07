@@ -1,6 +1,5 @@
 from collections import deque
 
-
 def change(d, c):
     # 상(0) 우(1) 하(2) 좌(3)
     # 동쪽 회전: 상(0) -> 우(1) -> 하(2) -> 좌(3) -> 상(0) : +1 방향
@@ -11,11 +10,9 @@ def change(d, c):
         d = (d + 1) % 4
     return d
 
-
 # 상 우 하 좌
 dy = [-1, 0, 1, 0]
 dx = [0, 1, 0, -1]
-
 
 def start():
     direction = 1  # 초기 방향
@@ -36,7 +33,6 @@ def start():
             time += 1
         else:  # 본인 몸에 부딪히거나, 벽에 부딪힌 경우
             return time
-
 
 if __name__ == "__main__":
 
