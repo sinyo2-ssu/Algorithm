@@ -7,11 +7,10 @@ for i in range(len(arr)):
     arr[i] -= Master
     if arr[i] <= 0:
         continue
-    else :
+    else:
         if arr[i] % Sub == 0:
             cnt += int(arr[i] / Sub)
         else :
-            cnt += int((arr[i] / Sub)) + 1
-
+            cnt += int((arr[i] / Sub)) +
 print(cnt)
 
