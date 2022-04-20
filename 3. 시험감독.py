@@ -11,6 +11,6 @@ for i in range(len(arr)):
         if arr[i] % Sub == 0:
             cnt += int(arr[i] / Sub)
         else :
-            cnt += int((arr[i] / Sub)) +
+            cnt += int((arr[i] / Sub))
 print(cnt)
 
