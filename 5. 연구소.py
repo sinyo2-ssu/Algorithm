@@ -90,21 +90,11 @@ for a in range(len(combinate)):
     s[combinate[a][1][0]][combinate[a][1][1]] = 1
     s[combinate[a][2][0]][combinate[a][2][1]] = 1
 
-    # print("before")
-    # for i in range(N):
-    #     print(s[i])
-
     bfs()
-
-    # print("After")
-    # for i in range(N):
-    #     print(s[i])
-    # print(" ")
 
     max_zero = max(max_zero, count_zero(s))
 
     s = []
     s = copy.deepcopy(s_tmp)
-
 print(max_zero)
 

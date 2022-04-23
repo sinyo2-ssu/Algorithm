@@ -34,6 +34,7 @@ def start():
         else:  # 본인 몸에 부딪히거나, 벽에 부딪힌 경우
             return time
 
+
 if __name__ == "__main__":
 
     # input
