@@ -33,11 +33,18 @@ for i in range(N):
     s.append(list(map(int,input().split())))
 
 print(tetrominos)
+answer = 0
 for tetro_idx in range(len(tetrominos)):
     for i in range(N-len(tetrominos[tetro_idx])+1):
         for j in range(M-len(tetrominos[tetro_idx][0])+1):
-            print(tetrominos[tetro_idx])
-        print(" ")
+            tmp = 0
+            for a in range(i,i+len(tetrominos[tetro_idx])):
+                for b in range(j,j+len(tetrominos[tetro_idx][0])):
+                    if tetrominos[tetro_idx][i][j] != 0:
+                        tmp += s[a][b]
+            answer = max(answer, tmp)
+print(answer)
+
 
 
 
