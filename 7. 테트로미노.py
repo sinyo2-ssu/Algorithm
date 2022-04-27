@@ -40,8 +40,9 @@ for tetro_idx in range(len(tetrominos)):
             tmp = 0
             for a in range(i,i+len(tetrominos[tetro_idx])):
                 for b in range(j,j+len(tetrominos[tetro_idx][0])):
-                    if tetrominos[tetro_idx][i][j] != 0:
-                        tmp += s[a][b]
+                    
+                    tmp += s[a][b]
+            print(" ")
             answer = max(answer, tmp)
 print(answer)
 
