@@ -1,52 +1,49 @@
-tetrominos = []
-tet1_1 = [[1,1,1,1]]
-tetrominos.append(tet1_1)
-tet1_2 = [[1],[1],[1],[1]]
-tetrominos.append(tet1_2)
-tet2_1 = [[1,1],[1,1]]
-tetrominos.append(tet2_1)
-tet3_1 = [[1,0],[1,0],[1,1]]
-tetrominos.append(tet3_1)
-tet3_2 = [[0,0,1],[1,1,1]]
-tetrominos.append(tet3_2)
-tet3_3 = [[1,1],[0,1],[0,1]]
-tetrominos.append(tet3_3)
-tet3_4 = [[1,1,1],[1,0,0]]
-tetrominos.append(tet3_4)
-tet4_1 = [[1,0],[1,1],[0,1]]
-tetrominos.append(tet4_1)
-tet4_2 = [[0,1,1],[1,1,0]]
-tetrominos.append(tet4_2)
-tet5_1 = [[1,1,1],[0,1,0]]
-tetrominos.append(tet5_1)
-tet5_2 = [[0,1],[1,1],[0,1]]
-tetrominos.append(tet5_2)
-tet5_3 = [[0,1,0],[1,1,1]]
-tetrominos.append(tet5_3)
-tet5_4 = [[1,0],[1,1],[1,0]]
-tetrominos.append(tet5_4)
+import sys
 
-N, M = map(int, input().split())
+input = sys.stdin.readline
 
-s = []
-for i in range(N):
-    s.append(list(map(int,input().split())))
+def dfs(k, temp, r, c):
+    global n, m
+    global array
+    global answer
+    global visited
+    global max_val
 
-print(tetrominos)
+    steps = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+
+    if k == 4:
+        answer = max(answer, temp)
+        return
+    if temp + (4 - k) * max_val < answer:
+        return
+    for step in steps:
+        next_r = r + step[0]
+        next_c = c + step[1]
+        if 0 <= next_r < n and 0 <= next_c < m:
+            if not visited[next_r][next_c]:
+                visited[next_r][next_c] = True
+                if k == 2:
+                    # for ㅏ shape
+                    dfs(k + 1, temp + array[next_r][next_c], r, c)
+                dfs(k + 1, temp + array[next_r][next_c], next_r, next_c)
+                visited[next_r][next_c] = False
+    return
+
+
+n, m = map(int, input().split())
+array = []
 answer = 0
-for tetro_idx in range(len(tetrominos)):
-    for i in range(N-len(tetrominos[tetro_idx])+1):
-        for j in range(M-len(tetrominos[tetro_idx][0])+1):
-            tmp = 0
-            for a in range(i,i+len(tetrominos[tetro_idx])):
-                for b in range(j,j+len(tetrominos[tetro_idx][0])):
-                    
-                    tmp += s[a][b]
-            print(" ")
-            answer = max(answer, tmp)
+visited = [[False for _ in range(m)] for _ in range(n)]
+
+for _ in range(n):
+    array.append(list(map(int, input().split())))
+
+max_val = max(map(max, array))
+
+for i in range(n):
+    for j in range(m):
+        visited[i][j] = True
+        dfs(1, array[i][j], i, j)
+        visited[i][j] = False
+
 print(answer)
-
-
-
-
-
